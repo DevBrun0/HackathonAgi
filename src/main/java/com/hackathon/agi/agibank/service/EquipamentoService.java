@@ -23,6 +23,7 @@ public class EquipamentoService {
                 .nome(request.getNome())
                 .marca(request.getMarca())
                 .status(request.getStatus())
+                .categoria(request.getCategoria())
                 .dataCompra(request.getDataCompra())
                 .build();
         equipamentoRepository.save(equipamento);
@@ -42,6 +43,11 @@ public class EquipamentoService {
         equipamentoRepository.save(equipamento);
     }
 
-    public Equipamento equipamentoPorId() {
+    public Equipamento equipamentoPorId(String id) {
+       Optional<Equipamento> equipamentoOpt = equipamentoRepository.findById(id);
+        if(equipamentoOpt.isEmpty()){
+            throw new RuntimeException("Equipamento não Encontrado id: " + id);
+        }
+        return equipamentoOpt.get();
     }
 }

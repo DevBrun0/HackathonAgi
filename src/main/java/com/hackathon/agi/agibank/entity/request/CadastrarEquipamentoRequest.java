@@ -12,6 +12,8 @@ public class CadastrarEquipamentoRequest {
     @NotBlank
     private String marca;
     @NotBlank
+    private String categoria;
+    @NotBlank
     private LocalDateTime dataCompra;
     @NotBlank
     private StatusEnum status;
