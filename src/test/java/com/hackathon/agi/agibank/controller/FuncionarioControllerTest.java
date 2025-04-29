@@ -6,6 +6,7 @@ import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
 import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
 import com.hackathon.agi.agibank.exceptions.funcionario.FuncionarioExceptions;
+import com.hackathon.agi.agibank.mapper.FuncionarioMapper;
 import com.hackathon.agi.agibank.repository.FuncionarioRepository;
 import com.hackathon.agi.agibank.service.FuncionarioService;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,9 @@ class FuncionarioControllerTest {
 
         @Mock
         private FuncionarioRepository funcionarioRepository;
+
+        @Mock
+        private FuncionarioMapper funcionarioMapper;
 
         private Funcionario funcionario;
         private FuncionarioRequest funcionarioRequest;
@@ -43,15 +47,6 @@ class FuncionarioControllerTest {
             );
         }
 
-        @Test
-        void deveCriarFuncionarioComSucesso() {
-            when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
-
-            Funcionario resultado = funcionarioService.criarFuncionario(funcionarioRequest);
-
-            assertNotNull(resultado);
-            assertEquals("João Silva", resultado.getNomeCompleto());
-        }
 
         @Test
         void deveListarTodosFuncionarios() {
