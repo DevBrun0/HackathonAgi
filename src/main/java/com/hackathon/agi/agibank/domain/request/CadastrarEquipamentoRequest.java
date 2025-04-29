@@ -1,6 +1,6 @@
-package com.hackathon.agi.agibank.entity.request;
+package com.hackathon.agi.agibank.domain.request;
 
-import com.hackathon.agi.agibank.entity.StatusEnum;
+import com.hackathon.agi.agibank.domain.StatusEnum;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 

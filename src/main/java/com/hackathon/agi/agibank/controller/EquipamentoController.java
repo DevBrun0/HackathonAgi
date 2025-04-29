@@ -1,8 +1,8 @@
 package com.hackathon.agi.agibank.controller;
 
-import com.hackathon.agi.agibank.entity.Equipamento;
-import com.hackathon.agi.agibank.entity.request.AlterarStatusRequest;
-import com.hackathon.agi.agibank.entity.request.CadastrarEquipamentoRequest;
+import com.hackathon.agi.agibank.domain.Equipamento;
+import com.hackathon.agi.agibank.domain.request.AlterarStatusRequest;
+import com.hackathon.agi.agibank.domain.request.CadastrarEquipamentoRequest;
 import com.hackathon.agi.agibank.service.EquipamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +29,8 @@ public class EquipamentoController {
         equipamentoService.alterarEstado(id, request);
     }
 
-    @GetMapping("/id")
-    public Equipamento equipamentoPorId(@PathVariable String id){
-
-        return equipamentoService.equipamentoPorId(id);
-    }
+//    @GetMapping("/id")
+//    public Equipamento equipamentoPorId(){
+//        return equipamentoService.equipamentoPorId();
+//    }
 }

@@ -1,12 +1,11 @@
 package com.hackathon.agi.agibank.service;
 
 
-import com.hackathon.agi.agibank.entity.Equipamento;
-import com.hackathon.agi.agibank.entity.request.AlterarStatusRequest;
-import com.hackathon.agi.agibank.entity.request.CadastrarEquipamentoRequest;
+import com.hackathon.agi.agibank.domain.Equipamento;
+import com.hackathon.agi.agibank.domain.request.AlterarStatusRequest;
+import com.hackathon.agi.agibank.domain.request.CadastrarEquipamentoRequest;
 import com.hackathon.agi.agibank.repository.EquipamentoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.core.aggregation.ComparisonOperators;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
