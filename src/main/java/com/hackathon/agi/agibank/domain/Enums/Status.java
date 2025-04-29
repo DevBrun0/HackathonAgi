@@ -1,4 +1,4 @@
-package com.hackathon.agi.agibank.entity.Enums;
+package com.hackathon.agi.agibank.domain.Enums;
 
 public enum Status {
     ATIVO,DESLIGADO,PENDENTE

@@ -1,6 +1,6 @@
-package com.hackathon.agi.agibank.entity;
+package com.hackathon.agi.agibank.domain;
 
-import com.hackathon.agi.agibank.entity.Enums.Status;
+import com.hackathon.agi.agibank.domain.Enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

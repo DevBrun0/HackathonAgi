@@ -1,13 +1,10 @@
 package com.hackathon.agi.agibank.service;
 
-import com.hackathon.agi.agibank.controller.FuncionarioController;
-import com.hackathon.agi.agibank.entity.Funcionario;
+import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FuncionarioService {

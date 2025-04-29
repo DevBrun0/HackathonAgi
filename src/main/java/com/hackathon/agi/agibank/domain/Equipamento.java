@@ -1,4 +1,4 @@
-package com.hackathon.agi.agibank.entity;
+package com.hackathon.agi.agibank.domain;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,23 +1,22 @@
 package com.hackathon.agi.agibank.controller;
 
-import com.hackathon.agi.agibank.entity.Funcionario;
-import com.hackathon.agi.agibank.repository.FuncionarioRepository;
+import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.service.FuncionarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/funcionario")
-public class FuncionarioController {
+public class FuncionarioController implements FuncionarioApi {
     private final FuncionarioService funcionarioService;
 
     public FuncionarioController(FuncionarioService funcionarioService) {
         this.funcionarioService = funcionarioService;
     }
 
+    @ApiResponse(description = "")
     @PostMapping
     public Funcionario criar(@RequestBody Funcionario funcionario) {
         return funcionarioService.criarFuncionario(funcionario);
