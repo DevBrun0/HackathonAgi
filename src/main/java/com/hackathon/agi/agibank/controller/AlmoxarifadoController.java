@@ -1,9 +1,8 @@
 package com.hackathon.agi.agibank.controller;
 
-import com.hackathon.agi.agibank.entity.Almoxarifado;
-import com.hackathon.agi.agibank.entity.almoxarifado.request.AlmoxarifadoEmprestaRequest;
-import com.hackathon.agi.agibank.entity.almoxarifado.response.AlmoxarifadoDevolveResponse;
-import com.hackathon.agi.agibank.entity.almoxarifado.response.AlmoxarifadoEmprestaResponse;
+import com.hackathon.agi.agibank.domain.Almoxarifado;
+import com.hackathon.agi.agibank.domain.almoxarifado.request.AlmoxarifadoEmprestaRequest;
+import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoEmprestaResponse;
 import com.hackathon.agi.agibank.service.AlmoxarifadoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

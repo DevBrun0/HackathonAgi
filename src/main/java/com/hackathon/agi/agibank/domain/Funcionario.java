@@ -1,6 +1,6 @@
 package com.hackathon.agi.agibank.domain;
 
-import com.hackathon.agi.agibank.domain.Enums.Status;
+import com.hackathon.agi.agibank.domain.nums.StatusFuncionario;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -15,5 +15,5 @@ public class Funcionario {
     String nomeCompleto;
     String cpf;
     String cargo;
-    Status status;
+    StatusFuncionario statusFuncionario;
 }

@@ -1,9 +1,10 @@
 package com.hackathon.agi.agibank.service;
 
-import com.hackathon.agi.agibank.entity.Almoxarifado;
-import com.hackathon.agi.agibank.entity.Equipamento;
-import com.hackathon.agi.agibank.entity.almoxarifado.request.AlmoxarifadoEmprestaRequest;
-import com.hackathon.agi.agibank.entity.almoxarifado.response.AlmoxarifadoEmprestaResponse;
+import com.hackathon.agi.agibank.domain.Almoxarifado;
+import com.hackathon.agi.agibank.domain.Equipamento;
+import com.hackathon.agi.agibank.domain.Funcionario;
+import com.hackathon.agi.agibank.domain.almoxarifado.request.AlmoxarifadoEmprestaRequest;
+import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoEmprestaResponse;
 import com.hackathon.agi.agibank.exceptions.almoxarifado.AlmoxarifadoNaoEncontradoException;
 import com.hackathon.agi.agibank.exceptions.almoxarifado.DevolveEquipamentoNullException;
 import com.hackathon.agi.agibank.exceptions.almoxarifado.EquipamentoNaoDisponivelException;
@@ -26,11 +27,11 @@ public class AlmoxarifadoService {
     private final AlmoxarifadoMapper almoxarifadoMapper;
 
     public AlmoxarifadoEmprestaResponse emprestarEquipamento(AlmoxarifadoEmprestaRequest historicoRequest) {
-        Funcionario funcionario = funcionarioService.verFuncionario(historicoRequest.idFuncionario());
+        Funcionario funcionario = funcionarioService.buscarFuncionarioPorId(historicoRequest.idFuncionario());
 
         List<Equipamento> equipamentosDisponiveis = categoriaLivre(historicoRequest.categoria());
         if (equipamentosDisponiveis.size() == 0) {
-            compraService.solicitarCompra(historicoRequest.categoria());
+            compraService.solicitarCompra(historicoRequest.categoria(), historicoRequest.idFuncionario());
             throw new EquipamentoNaoDisponivelException("Equipamento não livre!");
         }
         Equipamento equipamento = equipamentosDisponiveis.getFirst();
@@ -43,7 +44,7 @@ public class AlmoxarifadoService {
     public void devolverEquipamento(String idEquipamento) {
         Equipamento equipamento = equipamentoService.equipamentoPorId(idEquipamento);
 
-        List<Almoxarifado> listaAlmoxarifado = almoxarifadoRepository.findByIdEquipamento(idEquipamento);
+        List<Almoxarifado> listaAlmoxarifado = almoxarifadoRepository.findByIdEquipamento(equipamento.getPatrimonio());
         Almoxarifado almoxarifado = listaAlmoxarifado.stream()
                 .filter(alm -> alm.getDataDevolucao() == null)
                 .findFirst().get();
@@ -73,6 +74,6 @@ public class AlmoxarifadoService {
 
     public Almoxarifado listarAlmozarifadoPorId(String id){
            return almoxarifadoRepository.findById(id)
-                   .orElseThrow(() -> new AlmoxarifadoNaoEncontradoException());
+                   .orElseThrow(() -> new AlmoxarifadoNaoEncontradoException("Equipamento não encontrado"));
     }
 }

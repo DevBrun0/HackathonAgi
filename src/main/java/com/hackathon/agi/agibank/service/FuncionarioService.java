@@ -31,7 +31,7 @@ public class FuncionarioService {
         Funcionario funcionarioExistente = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
 
-        funcionarioExistente.setStatus(funcionarioAtualizado.getStatus());
+        funcionarioExistente.setStatusFuncionario(funcionarioAtualizado.getStatusFuncionario());
 
         return funcionarioRepository.save(funcionarioExistente);
     }

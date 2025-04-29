@@ -1,4 +1,4 @@
-package com.hackathon.agi.agibank.entity;
+package com.hackathon.agi.agibank.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

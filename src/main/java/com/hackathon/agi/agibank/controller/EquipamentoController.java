@@ -1,8 +1,8 @@
 package com.hackathon.agi.agibank.controller;
 
-import com.hackathon.agi.agibank.entity.Equipamento;
-import com.hackathon.agi.agibank.entity.Equipamento.request.AlterarStatusRequest;
-import com.hackathon.agi.agibank.entity.Equipamento.request.CadastrarEquipamentoRequest;
+import com.hackathon.agi.agibank.domain.Equipamento;
+import com.hackathon.agi.agibank.domain.equipamento.request.AlterarStatusRequest;
+import com.hackathon.agi.agibank.domain.equipamento.request.CadastrarEquipamentoRequest;
 import com.hackathon.agi.agibank.service.EquipamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

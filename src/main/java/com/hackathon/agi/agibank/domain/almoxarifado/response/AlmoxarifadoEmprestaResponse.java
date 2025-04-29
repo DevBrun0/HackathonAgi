@@ -1,4 +1,4 @@
-package com.hackathon.agi.agibank.entity.almoxarifado.response;
+package com.hackathon.agi.agibank.domain.almoxarifado.response;
 
 import java.time.LocalDateTime;
 
