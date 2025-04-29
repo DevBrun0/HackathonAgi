@@ -1,5 +1,6 @@
 package com.hackathon.agi.agibank.domain;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -10,7 +11,9 @@ public class Almoxarifado {
     @Id
     private String id;
 
+    @NotNull
     private String idEquipamento;
+    @NotNull
     private String idFuncionario;
     private LocalDateTime dataEmprestimo = LocalDateTime.now();
     private LocalDateTime dataDevolucao;
