@@ -1,6 +1,8 @@
 package com.hackathon.agi.agibank.mapper;
 
 import com.hackathon.agi.agibank.domain.Almoxarifado;
+import com.hackathon.agi.agibank.domain.Equipamento;
+import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoEmprestaResponse;
 import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoListaResponse;
 
