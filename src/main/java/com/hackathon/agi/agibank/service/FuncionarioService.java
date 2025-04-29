@@ -1,6 +1,7 @@
 package com.hackathon.agi.agibank.service;
 
 import com.hackathon.agi.agibank.domain.Almoxarifado;
+import com.hackathon.agi.agibank.domain.Equipamento;
 import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
 import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
@@ -19,11 +20,12 @@ public class FuncionarioService {
     private final FuncionarioRepository funcionarioRepository;
     private final FuncionarioMapper funcionarioMapper;
     private final AlmoxarifadoRepository almoxarifadoRepository;
-
-    public FuncionarioService(FuncionarioRepository funcionarioRepository, FuncionarioMapper funcionarioMapper, AlmoxarifadoRepository almoxarifadoRepository) {
+    private final EquipamentoService equipamentoService;
+    public FuncionarioService(FuncionarioRepository funcionarioRepository, FuncionarioMapper funcionarioMapper, AlmoxarifadoRepository almoxarifadoRepository, EquipamentoService equipamentoService) {
         this.funcionarioRepository = funcionarioRepository;
         this.funcionarioMapper = funcionarioMapper;
         this.almoxarifadoRepository = almoxarifadoRepository;
+        this.equipamentoService = equipamentoService;
     }
 
     public Funcionario criarFuncionario(FuncionarioRequest funcionarioRequest) {
@@ -40,7 +42,7 @@ public class FuncionarioService {
                 .orElseThrow(() -> new FuncionarioExceptions("Funcionário não encontrado"));
     }
 
-    public Funcionario desligarFuncionario(String id) {
+    public List<Equipamento> desligarFuncionario(String id) {
         Funcionario funcionarioExistente = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new FuncionarioExceptions("Funcionário não encontrado"));
         List<Almoxarifado> listaAlmoxarifado = almoxarifadoRepository.findByIdFuncionario(funcionarioExistente.getId());
@@ -48,14 +50,20 @@ public class FuncionarioService {
                 .filter(alm -> alm.getDataDevolucao() == null)
                 .toList();
 
+        List<Equipamento> equipamentos = equipamentoService.listarEquipamento();
         if(listaPendencias.size() > 0){
             funcionarioExistente.setStatus(StatusFuncionario.PENDENTE);
             funcionarioRepository.save(funcionarioExistente);
-            throw new DesligarFuncionarioException("Equipamentos ainda pendentes");
+            return equipamentos.stream()
+                    .filter(equip -> listaPendencias.stream()
+                            .map(Almoxarifado::getIdEquipamento)
+                            .anyMatch(idEquip -> idEquip.equals(equip.getPatrimonio()))).toList();
         }
 
         funcionarioExistente.setStatus(StatusFuncionario.DESLIGADO);
-        return funcionarioRepository.save(funcionarioExistente);
+        funcionarioRepository.save(funcionarioExistente);
+        System.out.println(listaPendencias.size());
+        return null;
     }
 
     public List<Funcionario> listarFuncionariosPendenciasDesligamento() {
