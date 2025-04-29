@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CompraMapper {
-    public CompraResponse compraParaCompraResponse(Compra compra) {
+    public CompraResponse compraParaCompraResponse(Compra compra, String nomeFuncionario) {
         return new CompraResponse(
                 compra.getCategoria(),
-                compra.getIdFuncionario(),
+                nomeFuncionario,
                 compra.getStatus()
         );
     }
