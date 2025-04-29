@@ -1,4 +1,4 @@
-package com.hackathon.agi.agibank.exeptions;
+package com.hackathon.agi.agibank.exceptions.funcionario;
 
 public class FuncionarioExceptions extends RuntimeException{
 

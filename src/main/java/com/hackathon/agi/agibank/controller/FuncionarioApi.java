@@ -2,6 +2,8 @@ package com.hackathon.agi.agibank.controller;
 
 import com.hackathon.agi.agibank.domain.ErroResponse;
 import com.hackathon.agi.agibank.domain.Funcionario;
+import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
+import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -28,7 +30,7 @@ public interface FuncionarioApi {
                     @ApiResponse(responseCode = "404", description = "Não encontrado",
                             content = @Content(schema = @Schema(implementation = ErroResponse.class)))
             })
-    Funcionario criar(@RequestBody Funcionario funcionario);
+    Funcionario criar(@RequestBody FuncionarioRequest funcionarioRequest);
 
     @Operation(summary = "Visualização de funcionários",
             responses = {
@@ -86,5 +88,5 @@ public interface FuncionarioApi {
                                     )
                             ))
             })
-    Funcionario alterarStatus(@PathVariable String id, @RequestBody Funcionario funcionario);
+    Funcionario desligarFuncionario(@PathVariable String id);
 }

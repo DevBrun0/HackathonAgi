@@ -2,7 +2,7 @@ package com.hackathon.agi.agibank.service;
 
 import com.hackathon.agi.agibank.domain.Compra;
 import com.hackathon.agi.agibank.domain.compra.response.CompraResponse;
-import com.hackathon.agi.agibank.domain.nums.StatusCompra;
+import com.hackathon.agi.agibank.domain.enums.StatusCompra;
 import com.hackathon.agi.agibank.exceptions.compra.CompraNaoEncontradaException;
 import com.hackathon.agi.agibank.mapper.CompraMapper;
 import com.hackathon.agi.agibank.repository.CompraRepository;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class CompraService {
 
     private final CompraRepository compraRepository;

@@ -3,6 +3,7 @@ package com.hackathon.agi.agibank.controller;
 import com.hackathon.agi.agibank.domain.Almoxarifado;
 import com.hackathon.agi.agibank.domain.almoxarifado.request.AlmoxarifadoEmprestaRequest;
 import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoEmprestaResponse;
+import com.hackathon.agi.agibank.repository.AlmoxarifadoRepository;
 import com.hackathon.agi.agibank.service.AlmoxarifadoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.List;
 public class AlmoxarifadoController {
 
     private final AlmoxarifadoService almoxarifadoService;
+    private final AlmoxarifadoRepository almoxarifadoRepository;
 
     @PostMapping("/emprestar")
     public ResponseEntity<?> emprestarEquipamento(@RequestBody AlmoxarifadoEmprestaRequest almoxarifadoEmprestaRequest) {
@@ -25,7 +27,7 @@ public class AlmoxarifadoController {
     }
 
     @PatchMapping("/devolver/{id}")
-    public ResponseEntity<?> devolverEquipamento(@RequestParam String id){
+    public ResponseEntity<?> devolverEquipamento(@PathVariable String id){
         almoxarifadoService.devolverEquipamento(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -36,9 +38,14 @@ public class AlmoxarifadoController {
         return ResponseEntity.status(HttpStatus.OK).body(listaAlmoxarifado);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> listarAlmoxarifadoPorId(String id){
         Almoxarifado listaPorId = almoxarifadoService.listarAlmoxarifadoPorId(id);
-        return ResponseEntity.status(HttpStatus.OK).body(listarAlmoxarifadoPorId(id));
+        return ResponseEntity.status(HttpStatus.OK).body(listaPorId);
+    }
+
+    @DeleteMapping
+    public void deleta(){
+        almoxarifadoRepository.deleteAll();
     }
 }

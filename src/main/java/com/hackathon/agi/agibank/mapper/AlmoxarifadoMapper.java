@@ -5,7 +5,9 @@ import com.hackathon.agi.agibank.domain.Equipamento;
 import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoEmprestaResponse;
 import com.hackathon.agi.agibank.domain.almoxarifado.response.AlmoxarifadoListaResponse;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AlmoxarifadoMapper {
 
 

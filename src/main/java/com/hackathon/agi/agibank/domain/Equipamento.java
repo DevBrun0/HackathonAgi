@@ -1,6 +1,7 @@
 package com.hackathon.agi.agibank.domain;
 
-import com.hackathon.agi.agibank.domain.nums.StatusEstado;
+import com.hackathon.agi.agibank.domain.enums.StatusEquipamentosEmprestimo;
+import com.hackathon.agi.agibank.domain.enums.StatusEstado;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -17,5 +18,6 @@ public class Equipamento {
     private String marca;
     private String categoria;
     private LocalDateTime dataCompra;
-    private StatusEstado status;
+    private StatusEstado estado;
+    private StatusEquipamentosEmprestimo status;
 }

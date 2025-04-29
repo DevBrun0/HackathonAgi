@@ -2,9 +2,10 @@ package com.hackathon.agi.agibank.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.hackathon.agi.agibank.domain.Enums.Status;
 import com.hackathon.agi.agibank.domain.Funcionario;
-import com.hackathon.agi.agibank.exeptions.FuncionarioExceptions;
+import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
+import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
+import com.hackathon.agi.agibank.exceptions.funcionario.FuncionarioExceptions;
 import com.hackathon.agi.agibank.repository.FuncionarioRepository;
 import com.hackathon.agi.agibank.service.FuncionarioService;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 class FuncionarioControllerTest {
 
@@ -24,7 +24,7 @@ class FuncionarioControllerTest {
         private FuncionarioRepository funcionarioRepository;
 
         private Funcionario funcionario;
-
+        private FuncionarioRequest funcionarioRequest;
         @BeforeEach
         void setUp() {
             MockitoAnnotations.openMocks(this);
@@ -33,14 +33,21 @@ class FuncionarioControllerTest {
             funcionario.setNomeCompleto("João Silva");
             funcionario.setCpf("12345678900");
             funcionario.setCargo("Desenvolvedor");
-            funcionario.setStatus(Status.ATIVO);
+            funcionario.setStatus(StatusFuncionario.ATIVO);
+
+            funcionarioRequest = new FuncionarioRequest(
+                    "João Silva",
+                    "12345678900",
+                    "Desenvolvedor"
+
+            );
         }
 
         @Test
         void deveCriarFuncionarioComSucesso() {
             when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
 
-            Funcionario resultado = funcionarioService.criarFuncionario(funcionario);
+            Funcionario resultado = funcionarioService.criarFuncionario(funcionarioRequest);
 
             assertNotNull(resultado);
             assertEquals("João Silva", resultado.getNomeCompleto());
@@ -77,14 +84,14 @@ class FuncionarioControllerTest {
         @Test
         void deveAlterarStatusDoFuncionario() {
             Funcionario funcionarioAtualizado = new Funcionario();
-            funcionarioAtualizado.setStatus(Status.PENDENTE);
+            funcionarioAtualizado.setStatus(StatusFuncionario.PENDENTE);
 
             when(funcionarioRepository.findById("1")).thenReturn(Optional.of(funcionario));
             when(funcionarioRepository.save(any())).thenReturn(funcionario);
 
-            Funcionario resultado = funcionarioService.alterarStatus("1", funcionarioAtualizado);
+            Funcionario resultado = funcionarioService.desligarFuncionario("1");
 
-            assertEquals(Status.PENDENTE, resultado.getStatus());
+            assertEquals(StatusFuncionario.PENDENTE, resultado.getStatus());
         }
 
 

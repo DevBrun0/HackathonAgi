@@ -1,6 +1,7 @@
 package com.hackathon.agi.agibank.controller;
 
 import com.hackathon.agi.agibank.domain.Funcionario;
+import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
 import com.hackathon.agi.agibank.service.FuncionarioService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class FuncionarioController implements FuncionarioApi {
 
     @ApiResponse(description = "")
     @PostMapping
-    public Funcionario criar(@RequestBody Funcionario funcionario) {
+    public Funcionario criar(@RequestBody FuncionarioRequest funcionario) {
         return funcionarioService.criarFuncionario(funcionario);
     }
 
@@ -33,8 +34,8 @@ public class FuncionarioController implements FuncionarioApi {
     }
 
     @PatchMapping("/{id}")
-    public Funcionario alterarStatus(@PathVariable String id, @RequestBody Funcionario funcionario) {
-        return funcionarioService.alterarStatus(id, funcionario);
+    public Funcionario desligarFuncionario(@PathVariable String id) {
+        return funcionarioService.desligarFuncionario(id);
     }
 
 

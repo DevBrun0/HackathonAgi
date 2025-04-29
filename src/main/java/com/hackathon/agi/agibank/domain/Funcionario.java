@@ -1,6 +1,6 @@
 package com.hackathon.agi.agibank.domain;
 
-import com.hackathon.agi.agibank.domain.Enums.Status;
+import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +25,11 @@ public class Funcionario {
     String cargo;
 
     @Schema(description = "Status atual do funcionário", example = "ATIVO")
-    Status status;
+    StatusFuncionario status = StatusFuncionario.ATIVO;
+
+    public Funcionario(String nomeCompleto, String cpf, String cargo) {
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.cargo = cargo;
+    }
 }

@@ -12,10 +12,13 @@ import java.util.List;
 
 @RequestMapping("/compra")
 @RestController
-@RequiredArgsConstructor
 public class CompraController {
 
     private CompraService compraService;
+
+    public CompraController(CompraService compraService) {
+        this.compraService = compraService;
+    }
 
     @PostMapping
     public ResponseEntity fazerCompraEquipamento(String categoria, String idFuncionario){
@@ -29,14 +32,14 @@ public class CompraController {
         return  ResponseEntity.ok().body(listaCompras);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> buscarSolicitacoesPorFuncionario(String idFuncionario){
         List<CompraResponse> solicitacaoFuncionario = compraService.buscarSolicitacoesPorFuncionario(idFuncionario);
         return  ResponseEntity.ok().body(solicitacaoFuncionario);
     }
 
-    @PatchMapping("{/id}")
-    public ResponseEntity<?> receberCompra(String idCompra){
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> receberCompra(@PathVariable String idCompra){
         compraService.receberCompra(idCompra);
         return ResponseEntity.ok().build();
     }

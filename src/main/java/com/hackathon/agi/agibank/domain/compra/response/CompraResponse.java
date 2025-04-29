@@ -1,6 +1,6 @@
 package com.hackathon.agi.agibank.domain.compra.response;
 
-import com.hackathon.agi.agibank.domain.nums.StatusCompra;
+import com.hackathon.agi.agibank.domain.enums.StatusCompra;
 
 public record CompraResponse(String categoria, String nomeFuncionario, StatusCompra status) {
 }

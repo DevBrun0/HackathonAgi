@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AlmoxarifadoRepository extends MongoRepository<Almoxarifado, String> {
     List<Almoxarifado> findByIdEquipamento(String id);
+    List<Almoxarifado> findByIdFuncionario(String id);
 }
