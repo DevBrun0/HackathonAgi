@@ -40,20 +40,17 @@ public class CompraService {
                             .findFirst()
                             .orElse(null);
 
-                    String nomeFuncionario = (funcionario != null) ? funcionario.getNomeCompleto() : "Desconhecido";
+                    String nomeFuncionario = (funcionario != null) ? funcionario.getNomeCompleto() : "N/A";
                     return compraMapper.compraParaCompraResponse(compra, nomeFuncionario);
                 })
                 .toList();
     }
 
-    public List<CompraResponse> buscarSolicitacoesPorFuncionario(String idFuncionario) {
-        List<Compra> listaCompra = compraRepository.findAll();
-        Funcionario funcionario = funcionarioService.buscarFuncionarioPorId(idFuncionario);
-        return listaCompra.stream()
-                .filter(compra -> compra.getIdFuncionario().equals(idFuncionario))
-                .map(compra -> compraMapper.compraParaCompraResponse(compra, funcionario.getNomeCompleto()))
-                .toList();
+    public Compra buscarSolicitacoesPorId(String id) {
+        return compraRepository.findById(id)
+                .orElseThrow(() -> new CompraNaoEncontradaException("Compra não encontrada!"));
     }
+
 
     public CompraResponse receberCompra(String idCompra) {
         Compra compra = compraRepository.findById(idCompra)

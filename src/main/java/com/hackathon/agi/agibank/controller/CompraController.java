@@ -1,10 +1,8 @@
 package com.hackathon.agi.agibank.controller;
 
-import com.hackathon.agi.agibank.domain.compra.request.CompraRequest;
+import com.hackathon.agi.agibank.domain.Compra;
 import com.hackathon.agi.agibank.domain.compra.response.CompraResponse;
 import com.hackathon.agi.agibank.service.CompraService;
-import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +30,13 @@ public class CompraController {
         return  ResponseEntity.ok().body(listaCompras);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> buscarSolicitacoesPorFuncionario(String idFuncionario){
-        List<CompraResponse> solicitacaoFuncionario = compraService.buscarSolicitacoesPorFuncionario(idFuncionario);
-        return  ResponseEntity.ok().body(solicitacaoFuncionario);
+    @GetMapping("/{idCompra}")
+    public ResponseEntity buscarSolicitacoesPorFuncionario(@PathVariable String idCompra){
+        Compra compra = compraService.buscarSolicitacoesPorId(idCompra);
+        return  ResponseEntity.ok().body(compra);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{idCompra}")
     public ResponseEntity<?> receberCompra(@PathVariable String idCompra){
         compraService.receberCompra(idCompra);
         return ResponseEntity.ok().build();
