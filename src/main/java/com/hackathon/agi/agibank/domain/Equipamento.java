@@ -1,5 +1,6 @@
 package com.hackathon.agi.agibank.domain;
 
+import com.hackathon.agi.agibank.domain.Enums.StatusEnum;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
