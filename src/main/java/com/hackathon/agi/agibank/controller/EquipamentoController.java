@@ -23,6 +23,7 @@ public class EquipamentoController {
     public List<Equipamento> listarEquipamento(){
         return equipamentoService.listarEquipamento();
     }
+
     @PatchMapping("/id")
     public void alterarEstado(@PathVariable String id, @RequestBody AlterarStatusRequest request){
         equipamentoService.alterarEstado(id, request);
