@@ -1,6 +1,7 @@
 package com.hackathon.agi.agibank.service;
 
 import com.hackathon.agi.agibank.domain.Funcionario;
+import com.hackathon.agi.agibank.exeptions.FuncionarioExceptions;
 import com.hackathon.agi.agibank.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,12 @@ public class FuncionarioService {
 
     public Funcionario buscarFuncionarioPorId(String id) {
         return funcionarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+                .orElseThrow(() -> new FuncionarioExceptions("Funcionário não encontrado"));
     }
 
     public Funcionario alterarStatus(String id, Funcionario funcionarioAtualizado) {
         Funcionario funcionarioExistente = funcionarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+                .orElseThrow(() -> new FuncionarioExceptions("Funcionário não encontrado"));
 
         funcionarioExistente.setStatusFuncionario(funcionarioAtualizado.getStatusFuncionario());
 
