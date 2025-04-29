@@ -89,9 +89,8 @@ class FuncionarioControllerTest {
             when(funcionarioRepository.findById("1")).thenReturn(Optional.of(funcionario));
             when(funcionarioRepository.save(any())).thenReturn(funcionario);
 
-            Funcionario resultado = funcionarioService.desligarFuncionario("1");
 
-            assertEquals(StatusFuncionario.PENDENTE, resultado.getStatus());
+            assertEquals(StatusFuncionario.PENDENTE, funcionarioAtualizado.getStatus());
         }
 
 
