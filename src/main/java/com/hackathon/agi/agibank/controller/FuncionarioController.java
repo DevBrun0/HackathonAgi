@@ -1,5 +1,7 @@
 package com.hackathon.agi.agibank.controller;
 
+import com.hackathon.agi.agibank.domain.Almoxarifado;
+import com.hackathon.agi.agibank.domain.Equipamento;
 import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.funcionario.request.FuncionarioRequest;
 import com.hackathon.agi.agibank.service.FuncionarioService;
@@ -34,7 +36,7 @@ public class FuncionarioController implements FuncionarioApi {
     }
 
     @PatchMapping("/{id}")
-    public Funcionario desligarFuncionario(@PathVariable String id) {
+    public List<Equipamento> desligarFuncionario(@PathVariable String id) {
         return funcionarioService.desligarFuncionario(id);
     }
 

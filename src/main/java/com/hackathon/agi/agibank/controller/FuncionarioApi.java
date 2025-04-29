@@ -1,5 +1,6 @@
 package com.hackathon.agi.agibank.controller;
 
+import com.hackathon.agi.agibank.domain.Equipamento;
 import com.hackathon.agi.agibank.domain.ErroResponse;
 import com.hackathon.agi.agibank.domain.Funcionario;
 import com.hackathon.agi.agibank.domain.enums.StatusFuncionario;
@@ -88,5 +89,5 @@ public interface FuncionarioApi {
                                     )
                             ))
             })
-    Funcionario desligarFuncionario(@PathVariable String id);
+    List<Equipamento> desligarFuncionario(@PathVariable String id);
 }
