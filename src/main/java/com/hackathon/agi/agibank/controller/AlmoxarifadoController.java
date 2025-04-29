@@ -33,7 +33,7 @@ public class AlmoxarifadoController {
     }
 
     @GetMapping
-    public ResponseEntity<?> listarAlmoxarifado(@RequestBody Almoxarifado almoxarifado){
+    public ResponseEntity<?> listarAlmoxarifado(){
         List<Almoxarifado> listaAlmoxarifado = almoxarifadoService.listarAlmoxarifado();
         return ResponseEntity.status(HttpStatus.OK).body(listaAlmoxarifado);
     }
