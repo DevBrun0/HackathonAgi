@@ -36,5 +36,9 @@ public class AlmoxarifadoController {
         return ResponseEntity.status(HttpStatus.OK).body(listaAlmoxarifado);
     }
 
-
+    @GetMapping("{/id}")
+    public ResponseEntity<?> listarAlmoxarifadoPorId(String id){
+        Almoxarifado listaPorId = almoxarifadoService.listarAlmoxarifadoPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(listarAlmoxarifadoPorId(id));
+    }
 }

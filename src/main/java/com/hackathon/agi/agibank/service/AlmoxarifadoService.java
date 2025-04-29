@@ -72,7 +72,7 @@ public class AlmoxarifadoService {
         return almoxarifadoRepository.findAll();
     }
 
-    public Almoxarifado listarAlmozarifadoPorId(String id){
+    public Almoxarifado listarAlmoxarifadoPorId(String id){
            return almoxarifadoRepository.findById(id)
                    .orElseThrow(() -> new AlmoxarifadoNaoEncontradoException("Equipamento não encontrado"));
     }
