@@ -33,13 +33,13 @@ public class AlmoxarifadoController {
     }
 
     @GetMapping
-    public ResponseEntity<?> listarAlmoxarifado(Almoxarifado almoxarifado){
+    public ResponseEntity<?> listarAlmoxarifado(@RequestBody Almoxarifado almoxarifado){
         List<Almoxarifado> listaAlmoxarifado = almoxarifadoService.listarAlmoxarifado();
         return ResponseEntity.status(HttpStatus.OK).body(listaAlmoxarifado);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> listarAlmoxarifadoPorId(String id){
+    public ResponseEntity<?> listarAlmoxarifadoPorId(@PathVariable String id){
         Almoxarifado listaPorId = almoxarifadoService.listarAlmoxarifadoPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(listaPorId);
     }
